@@ -1,3 +1,34 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get the form data
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email']);
+    $message = htmlspecialchars($_POST['message']);
+    
+    // The recipient email address
+    $to = "info@mohaki.com";
+    
+    // Subject of the email
+    $subject = "New Contact Form Submission from " . $name;
+    
+    // Construct the email content
+    $body = "You have received a new message from your website contact form.\n\n";
+    $body .= "Name: $name\n";
+    $body .= "Email: $email\n";
+    $body .= "Message: $message\n";
+    
+    // Headers to specify from email
+    $headers = "From: $email" . "\r\n" . "Reply-To: $email" . "\r\n" . "X-Mailer: PHP/" . phpversion();
+    
+    // Send the email
+    if (mail($to, $subject, $body, $headers)) {
+        $success_message = "Thank you for your message. We'll get back to you soon!";
+    } else {
+        $error_message = "Sorry, something went wrong. Please try again later.";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +55,7 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-text">
-	    <h1>Welcome to Mohaki - محاكي</h1>
+            <h1>Welcome to Mohaki - محاكي</h1>
             <p>Enhance Your Shooting Skills with Professional Simulators</p>
             <div class="porshor-buttons">
                 <button onclick="openPorshor('english')">English Brochure</button>
@@ -40,7 +71,12 @@
         <div class="contact-container">
             <div class="contact-form">
                 <h3>Get In Touch</h3>
-                <form action="submit_form.php" method="POST">
+                <?php if (isset($success_message)) { ?>
+                    <p style="color: green;"><?php echo $success_message; ?></p>
+                <?php } elseif (isset($error_message)) { ?>
+                    <p style="color: red;"><?php echo $error_message; ?></p>
+                <?php } ?>
+                <form action="index.php" method="POST">
                     <input type="text" name="name" placeholder="Your Name" required>
                     <input type="email" name="email" placeholder="Your Email" required>
                     <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
@@ -49,7 +85,7 @@
             </div>
             <div class="contact-info">
                 <h3>Stay Connected!</h3>
-		<p>Whatsapp: +971 503 401 506</p>
+                <p>Whatsapp: +971 503 401 506</p>
                 <p>Email: info@mohaki.com</p>
             </div>
         </div>
