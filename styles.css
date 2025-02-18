@@ -46,7 +46,7 @@ body {
 
 /* Hero Section */
 .hero {
-    background-image: url('Mohaki_Logo.png');
+    background-image: url('Mohaki_logo.png');
     background-size: cover;
     background-position: center;
     color: white;
@@ -185,4 +185,90 @@ footer {
 
 footer p {
     font-size: 16px;
+}
+
+/* Responsive Design for Mobile */
+@media only screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .navbar nav ul {
+        flex-direction: column;
+        padding-left: 0;
+    }
+
+    .navbar nav ul li {
+        margin: 10px 0;
+    }
+
+    .hero {
+        padding: 60px 20px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 18px;
+    }
+
+    .porshor h2 {
+        font-size: 28px;
+    }
+
+    .contact-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .contact-form, .contact-info {
+        width: 100%;
+    }
+
+    .contact-form input, .contact-form textarea {
+        font-size: 14px;
+    }
+
+    .contact-form button {
+        font-size: 16px;
+    }
+
+    .contact-info p {
+        font-size: 16px;
+    }
+}
+
+/* Responsive Design for Extra Small Devices */
+@media only screen and (max-width: 480px) {
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .porshor-buttons {
+        flex-direction: column;
+    }
+
+    .porshor-buttons button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .contact-form h3, .contact-info h3 {
+        font-size: 24px;
+    }
+
+    .contact-form input, .contact-form textarea {
+        font-size: 14px;
+    }
+
+    .contact-form button {
+        font-size: 16px;
+    }
 }
